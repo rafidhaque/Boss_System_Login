@@ -11,13 +11,13 @@ export function PageLogin(): JSX.Element {
   ];
 
   const handleSubmit = (email: string, password: string) => {
+    let matched = false;
     users.map((user) => {
       if (user.email === email && user.password === password) {
-        console.log(user);
-        return "Found";
+        matched = true;
       }
     });
-    return "not found";
+    return matched;
   };
 
   const [email, setEmail] = React.useState("");
