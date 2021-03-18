@@ -1,4 +1,4 @@
-# RisQ
+# RisQ.
 
 ## Folder Structure
 |Location|Description|
