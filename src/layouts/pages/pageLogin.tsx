@@ -5,8 +5,8 @@ export function PageLogin(): JSX.Element {
     { email: "rafid@gmail.com", password: "67890" },
   ];
 
-  const [email, setEmail] = React.useState([]);
-  const [pass, setPass] = React.useState([]);
+  const [email, setEmail] = React.useState("");
+  const [pass, setPass] = React.useState("");
 
   return (
     <body className="gray-bg">
@@ -18,6 +18,10 @@ export function PageLogin(): JSX.Element {
                 type="email"
                 className="form-control"
                 placeholder="Email"
+                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
 
@@ -26,11 +30,18 @@ export function PageLogin(): JSX.Element {
                 type="password"
                 className="form-control"
                 placeholder="Password"
+                required
+                onChange={(e) => {
+                  setPass(e.target.value);
+                }}
               />
             </div>
             <button
               type="submit"
               className="btn btn-primary block full-width m-b"
+              onClick={() => {
+                console.log(email, pass);
+              }}
             >
               Login
             </button>
