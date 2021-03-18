@@ -6,10 +6,16 @@ import { LayoutPublic } from "./publicLayout";
 export function LayoutApplication(): JSX.Element {
   return (
     <Switch>
-      <Redirect exact from='/' to={AppRouteUi.Home.Root()} />
-      <Route path="/(home|404)" component={LayoutPublic} />
-      <Route path="/(login|dashboard|tools|news|methology-and-data)" component={LayoutPrivate} />
-      <Route path="**" render={() => <Redirect to={AppRouteUi.NotFound.Root()} />} />
+      <Redirect exact from="/" to={AppRouteUi.Home.Root()} />
+      <Route path="/(home|404|login)" component={LayoutPublic} />
+      <Route
+        path="/(dashboard|tools|news|methology-and-data)"
+        component={LayoutPrivate}
+      />
+      <Route
+        path="**"
+        render={() => <Redirect to={AppRouteUi.NotFound.Root()} />}
+      />
     </Switch>
   );
 }
