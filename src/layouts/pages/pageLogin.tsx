@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
+
 export function PageLogin(): JSX.Element {
   interface UserInfo {
     email: string;
     password: string;
   }
 
-  const users = [
-    { email: "abc@gmail.com", password: "12345" },
-    { email: "rafid@gmail.com", password: "67890" },
-  ];
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const url = "http://localhost:3001/users";
+
+    Axios.get(url).then((userData) => {
+      setUsers(userData.data);
+    });
+  }, []);
 
   const handleSubmit = (email: string, password: string) => {
     let matched = false;
-    users.map((user) => {
+    users.map((user: any) => {
+      console.log(user);
       if (user.email === email && user.password === password) {
         matched = true;
       }
