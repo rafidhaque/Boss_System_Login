@@ -1,9 +1,24 @@
 import React from "react";
 export function PageLogin(): JSX.Element {
-  const user = [
+  interface UserInfo {
+    email: string;
+    password: string;
+  }
+
+  const users = [
     { email: "abc@gmail.com", password: "12345" },
     { email: "rafid@gmail.com", password: "67890" },
   ];
+
+  const handleSubmit = (email: string, password: string) => {
+    users.map((user) => {
+      if (user.email === email && user.password === password) {
+        console.log(user);
+        return "Found";
+      }
+    });
+    return "not found";
+  };
 
   const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
@@ -40,7 +55,7 @@ export function PageLogin(): JSX.Element {
               type="submit"
               className="btn btn-primary block full-width m-b"
               onClick={() => {
-                console.log(email, pass);
+                console.log(handleSubmit(email, pass));
               }}
             >
               Login
