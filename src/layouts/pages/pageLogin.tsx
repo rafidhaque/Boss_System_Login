@@ -10,11 +10,18 @@ export function PageLogin(): JSX.Element {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:3001/users";
+    const url = "https://localhost:44319/api/UserInfo/authenticate";
 
-    Axios.get(url).then((userData) => {
-      setUsers(userData.data);
-    });
+    Axios.post(url, {}).then(
+      (userData) => {
+        // setUsers(userData);
+        console.log(userData);
+      },
+      (error) => {
+        console.log(error);
+        console.log("error");
+      }
+    );
   }, []);
 
   const handleSubmit = (email: string, password: string) => {
