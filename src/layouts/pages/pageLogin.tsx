@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import { Link } from "react-router-dom";
+import { AppRouteUi } from "../../configs/appRoute";
 
 export function PageLogin(): JSX.Element {
   interface UserInfo {
@@ -54,7 +56,6 @@ export function PageLogin(): JSX.Element {
                 }}
               />
             </div>
-
             <div className="form-group">
               <input
                 type="password"
@@ -66,15 +67,18 @@ export function PageLogin(): JSX.Element {
                 }}
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-primary block full-width m-b"
-              onClick={() => {
-                console.log(handleSubmit(email, pass));
-              }}
-            >
-              Login
-            </button>
+            <Link to={AppRouteUi.Home.Root()}>
+              <button
+                type="submit"
+                className="btn btn-primary block full-width m-b"
+                onClick={() => {
+                  // console.log(handleSubmit(email, pass));
+                }}
+              >
+                Login
+              </button>
+            </Link>
+            ;
           </div>
         </div>
       </div>
