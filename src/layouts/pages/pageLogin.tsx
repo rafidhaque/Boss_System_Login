@@ -9,32 +9,20 @@ export function PageLogin(): JSX.Element {
     password: string;
   }
 
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
+  const handleSubmit = (email: string, password: string) => {
     const url = "https://localhost:44319/api/UserInfo/authenticate";
 
-    Axios.post(url, {}).then(
+    Axios.post(url, {
+      UserName: email,
+      Password: password,
+    }).then(
       (userData) => {
-        // setUsers(userData);
-        console.log(userData);
+        console.log(userData.data.token);
       },
       (error) => {
-        console.log(error);
-        console.log("error");
+        console.log("User Not Found");
       }
     );
-  }, []);
-
-  const handleSubmit = (email: string, password: string) => {
-    let matched = false;
-    users.map((user: any) => {
-      console.log(user);
-      if (user.email === email && user.password === password) {
-        matched = true;
-      }
-    });
-    return matched;
   };
 
   const [email, setEmail] = React.useState("");
@@ -67,18 +55,17 @@ export function PageLogin(): JSX.Element {
                 }}
               />
             </div>
-            <Link to={AppRouteUi.Home.Root()}>
-              <button
-                type="submit"
-                className="btn btn-primary block full-width m-b"
-                onClick={() => {
-                  // console.log(handleSubmit(email, pass));
-                }}
-              >
-                Login
-              </button>
-            </Link>
-            ;
+            {/* <Link to={AppRouteUi.Home.Root()}> */}
+            <button
+              type="submit"
+              className="btn btn-primary block full-width m-b"
+              onClick={() => {
+                handleSubmit(email, pass);
+              }}
+            >
+              Login
+            </button>
+            {/* </Link> */};
           </div>
         </div>
       </div>
